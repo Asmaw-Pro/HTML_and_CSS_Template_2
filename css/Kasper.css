@@ -2,8 +2,48 @@
 :root {
   --main-color:#19c3fa;
   --transparent-color: rgb(15 116 143 / 70%);
+  --main-transition-duration: 0.3s;
 }
 /* End global variables */
+/* Start Global Rules */
+
+/* Start Components */
+.special-heading {
+  position: relative;
+  margin-top: 100px;
+  font-size: 40px;
+  text-transform: uppercase;
+}
+.special-heading::after,
+.special-heading::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -30px;
+}
+.special-heading::after {
+  background-color: black;
+  width: 150px;
+  height: 2px;
+  transform: translateX(-50%);
+}
+.special-heading::before {
+  width: 20px;
+  height: 20px;
+  border: 2px solid black;
+  border-radius: 50%;
+  background-color: white;
+  transform: translate(-50% ,50%);
+  z-index: 1;
+}
+.special-heading + p {
+  max-width: 550px;
+  margin: 70px 0;
+  color: #797979;
+  text-align: center;
+  line-height: 1.7;
+}
+/* End Components */
 /* Start global Rules */
 html {
   scroll-behavior: smooth;
@@ -28,6 +68,11 @@ li {
   padding-right: 15px;
   margin-left: auto;
   margin-right: auto;
+}
+.container:has(.special-heading) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 /* Small */
 @media (min-width: 768px) {
@@ -82,7 +127,7 @@ header ul li {
   margin-left: 20px;
   position: relative;
   color: white;
-  transition: 0.3s;
+  transition: var(--main-transition-duration);
   cursor: pointer;
 }
 header ul li:hover,
@@ -97,7 +142,7 @@ header ul li::after {
   bottom: -40px;
   left: 50%;
   transform: translateX(-50%);
-  transition: inherit;
+  transition: var(--main-transition-duration);
 }
 header ul li:is(:hover,:has(.active))::after {
   background-color: var(--main-color);
@@ -140,6 +185,7 @@ header .form {
   display: inline-flex;
   align-items: center;
   color: white;
+  cursor: pointer;
 }
 header .form::before {
   content: "";
@@ -172,7 +218,7 @@ header img.logo {
 }
 .landing .text {
   width: 50%;
-  padding: 20px;
+  padding: 30px 40px;
   background-color: var(--transparent-color);
   color: white;
   position: absolute;
@@ -182,7 +228,7 @@ header img.logo {
   display: flex;
   justify-content: flex-end;
 }
-@media (max-width: 767px) {
+@media (max-width: 1024px) {
   .landing .text {
     width: 100%;
     justify-content: center;
@@ -205,14 +251,299 @@ i.change-background {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  padding: 20px;
+  margin: 20px;
   color: white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: var(--main-transition-duration);
+  cursor: pointer;
 }
-i.change-background[class*="left"] {
+i.change-background:hover {
+  background-color: rgb(0 0 0 / 20%);
+}
+.landing i.change-background[class*="left"] {
   left: 0;
 }
-i.change-background[class*="right"] {
+.landing i.change-background[class*="right"] {
   right: 0;
 }
-
+@media (max-width: 1024px) {
+  .landing i.change-background {
+    display: none;
+  }
+}
+.landing ul.bullets {
+  width: 80px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.landing ul.bullets li {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid white;
+  cursor: pointer;
+  transition: var(--main-transition-duration);
+}
+.landing ul.bullets li.active {
+  border-color: var(--main-color);
+  background-color: var(--main-color);
+}
+.landing ul.bullets li:not(.active):hover {
+  background-color: white;
+}
 /* End Landing */
+
+/* start Services */
+.Services .services-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px;
+  margin-bottom: 100px;
+}
+@media (max-width: 1024px) {
+  .Services .services-container .srv {
+    flex-direction: column;
+    align-items: center;
+  }
+  .Services .services-container .srv :is(h4,p) {
+    text-align: center;
+  }
+  .Services .services-container {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+}
+.Services .services-container .srv {
+  display: flex;
+  gap: 40px;
+}
+.Services .services-container .srv .text {
+  flex: 1;
+}
+.Services .services-container .srv .text h4 {
+  margin: 0 0 20px;
+  color: var(--main-color);
+  font-size: 20px
+}
+.Services .services-container .srv .text p {
+  color: #797979;
+  line-height: 2;
+}
+/* end Services */
+/* Start design */
+.design {
+  min-height: 600px;
+  background-color: black;
+  background-image: url("../images/design-features.png");
+  background-size: cover;
+  position: relative;
+}
+.design .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: brightness(40%);
+}
+.design .text {
+  width: 50%;
+  padding: 20px;
+  background-color: var(--transparent-color);
+  color: white;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: flex-start;
+}
+
+@media (max-width: 767px) {
+  .design .text {
+    width: 100%;
+  }
+  .design .mobile img {
+    display: none;
+  }
+}
+.design .text .content h2 {
+  font-size: 25px;
+  font-weight: normal;
+  text-transform: uppercase;
+  line-height: 1.5;
+  margin: 30px 30px 50px;
+}
+.design .text .content ul {
+  padding-left: 40px;
+}
+.design .text .content ul li {
+  padding-left: 20px;
+  margin-bottom: 30px;
+}
+.design .text .content ul li::marker {
+  content: "\f390"; 
+  font-family: "Font Awesome 5 Free"; 
+  font-weight: bold;
+}
+.design .mobile {
+  width: 50%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.design .mobile img {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -70px;
+}
+/* End design */
+/* Start Portfolio */
+.portfolio ul.filter {
+  display: flex;
+}
+.portfolio ul.filter li {
+  padding: 10px;
+  transition: var(--main-transition-duration);
+}
+.portfolio ul.filter li.active {
+  background-color: var(--main-color);
+  color: white;
+  cursor: pointer;
+}
+.portfolio ul.filter li:not(.active):hover {
+  background-color: #eee;
+  cursor: pointer;
+}
+.portfolio ul.images {
+  display: grid;
+  overflow: hidden;
+}
+@media (min-width:1025px) {
+  .portfolio ul.images {
+    grid-template-columns: repeat(4,1fr);
+  }
+}
+@media (max-width:1024px) {
+  .portfolio ul.images {
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+@media (max-width:767px) {
+  .portfolio ul.images {
+    grid-template-columns: 1fr;
+  }
+}
+.portfolio ul.images li {
+  position: relative;
+  overflow: hidden;
+}
+.portfolio ul.images li .caption {
+  width: 100%;
+  position: absolute;
+  bottom: -100%;
+  padding: 15px;
+  background-color: white;
+  font-size: 13px;
+  transition: var(--main-transition-duration);
+}
+.portfolio ul.images li .caption p {
+  margin: 0 0 10px;
+}
+.portfolio ul.images li .caption span {
+  color: var(--main-color);
+}
+.portfolio ul.images li img {
+  max-width: 100%;
+  transition: var(--main-transition-duration);
+}
+.portfolio ul.images li:hover {
+  .caption {
+    bottom: 0;
+  }
+  img {
+    transform: rotate(3deg) scale(1.1) ;
+  }
+}
+.portfolio .more {
+  display: inline-block;
+  padding: 15px 20px;
+  margin-left: 50vw;
+  margin-top: 30px;
+  transform: translateX(-50%);
+  background-color: var(--main-color);
+  color: white;
+  text-transform: uppercase;
+  transition: var(--main-transition-duration);
+}
+.portfolio .more:hover {
+  filter: brightness(90%);
+  cursor: pointer;
+}
+/* End Portfolio */
+/* Start video */
+.video {
+  margin-top: 100px;
+  position: relative;
+}
+.video video {
+  max-width: 100%;
+}
+.video::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgb(0 0 0 / 40%);
+}
+.video .text {
+  width: 100%;
+  padding: 50px;
+  background-color: var(--transparent-color);
+  color: white;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  z-index: 1;
+}
+.video .text h3 {
+  font-weight: lighter;
+  font-size: 25px;
+  margin: 0;
+  text-transform: uppercase;
+}
+.video .text a {
+  padding: 10px 20px;
+  background-color: black;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+/* End video */
+/* Start About  */
+.about .image {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+.about .image img {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -120px;
+}
+/* End About  */
