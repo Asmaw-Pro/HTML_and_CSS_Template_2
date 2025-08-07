@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="./images/icon.png" type="image/x-icon">
   <title>Kasper | Template Two</title>
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -13,7 +14,7 @@
   <link rel="stylesheet" href="css/all.min.css">
   <!-- Main Template Css File -->
   <link rel="stylesheet" href="css/Kasper.css">
-  <!-- <link rel="stylesheet" href="css/KasperOrginal.css"> -->
+</head>
 <body>
   <!-- Start header -->
   <header>
@@ -22,7 +23,10 @@
         <img src="images/logo.png">
       </a>
       <nav>
-        <i class="fas fa-bars toggle-menu"></i>
+        <label for="toggle-check">
+          <i class="fas fa-bars toggle-menu"></i>
+        </label>
+        <input type="checkbox" id="toggle-check">
         <ul>
           <li><a href="#" class="active">Home</a></li>
           <li><a href="#Services">Services</a></li>
@@ -240,7 +244,7 @@
   <!-- Start About -->
   <div class="about" id="About">
     <div class="container">
-      <div class="special-heading">About</div>
+      <div class="special-heading">About us</div>
       <p>
         Curabitur arcu erat, accumsan id imperdiet et, 
         porttitor at sem. Mauris blandit aliquet elit, 
@@ -343,5 +347,150 @@
     <span>John Doe</span>
   </div>
   <!-- End Quate -->
+  <!-- Start Pricing -->
+  <div class="pricing" id="Pricing">
+    <div class="container">
+      <div class="special-heading">Pricing</div>
+      <p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Mauris blandit aliquet elit, eget tincidunt.</p>
+      <ul class="plans">
+        <li>
+          <div>
+            <span class="name">Basic</span>
+            <h5 class="price">19</h5>
+          </div>
+          <div>
+            <ul class="features">
+              <li>feature no 1</li>
+              <li>Extra Feature</li>
+              <li>Extra feature no 2</li>
+              <li>Feature</li>
+            </ul>
+          </div>
+          <div>
+            <a href="#" class="button">buy now</a>
+          </div>
+        </li>
+        <li>
+          <div>
+            <span class="name">Premium</span>
+            <h5 class="price">29</h5>
+          </div>
+          <div>
+            <ul class="features">
+              <li>feature no 1</li>
+              <li>Extra Feature</li>
+              <li>Extra feature no 2</li>
+              <li>Feature</li>
+            </ul>
+          </div>
+          <div>
+            <a href="#" class="button">buy now</a>
+          </div>
+        </li>
+        <li>
+          <div>
+            <span class="name">Pro</span>
+            <h5 class="price">39</h5>
+          </div>
+          <div>
+            <ul class="features">
+              <li>feature no 1</li>
+              <li>Extra Feature</li>
+              <li>Extra feature no 2</li>
+              <li>Feature</li>
+            </ul>
+          </div>
+          <div>
+            <a href="#" class="button">buy now</a>
+          </div>
+        </li>
+        <li>
+          <div>
+            <span class="name">Platinum</span>
+            <h5 class="price">49</h5>
+          </div>
+          <div>
+            <ul class="features">
+              <li>feature no 1</li>
+              <li>Extra Feature</li>
+              <li>Extra feature no 2</li>
+              <li>Feature</li>
+            </ul>
+          </div>
+          <div>
+            <a href="#" class="button">buy now</a>
+          </div>
+        </li>
+      </ul>
+      <span>Contact us if you have special request</span>
+      <a href="#" class="button">Contact Us</a>
+    </div>
+  </div>
+  <!-- End Pricing -->
+  <!-- Start Subscribe -->
+  <div class="subscribe">
+    <div class="container">
+      <form action="">
+        <i class="far fa-envelope fa-lg"></i>
+        <input type="email" name="mail" placeholder="Your Email" />
+        <input type="submit" value="Subscribe" />
+      </form>
+      <p>
+        Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Mauris blan dit aliquet elit, eget tincidunt.
+      </p>
+    </div>
+  </div>
+  <!-- End Subscribe -->
+  <!-- Start Connect us -->
+  <div class="connect-us" id="Contact">
+    <div class="container">
+      <div class="special-heading">Contact Us</div>
+      <p>
+        Curabitur arcu erat, accumsan id imperdiet et, 
+        porttitor at sem. Mauris blandit aliquet elit, 
+        eget tincidunt.
+      </p>
+      <div class="connect-us-container">
+        <form action="">
+          <input type="text" name="name" placeholder="Your name">
+        <input type="email" name="email" placeholder="your email">
+        <textarea name="message" id="" placeholder="your message"></textarea>
+        <input type="submit" value="send message">
+      </form>
+      <div class="info">
+        <div class="numbers">
+          <span>Get In Touch</span>
+          <ul>
+            <li>+00 123.456.789</li>
+            <li>+00 123.456.789</li>
+          </ul>
+        </div>
+        <div class="address">
+          <span>Where We Are</span>
+          <ul>
+            <li>Awesome Address 17</li>
+            <li>New York, NYC</li>
+            <li>123-4567-890</li>
+            <li>USA</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <!-- End Connect us -->
+  <!-- Start footer  -->
+  <footer>
+    <img src="./images/logo.png" alt="">
+    <span>We Are Social</span>
+    <ul>
+      <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+      <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+      <li><a href="#"><i class="fas fa-home"></i></a></li>
+      <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+    </ul>
+    <p>&copy; 2021 <strong>Kasper</strong> All Right Reserved</p>
+  </footer>
+  <!-- End footer  -->
 </body>
 </html>

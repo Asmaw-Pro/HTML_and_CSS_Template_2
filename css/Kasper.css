@@ -3,14 +3,13 @@
   --main-color:#19c3fa;
   --transparent-color: rgb(15 116 143 / 70%);
   --main-transition-duration: 0.3s;
+  --main-margin: 100px;
 }
 /* End global variables */
-/* Start Global Rules */
-
 /* Start Components */
 .special-heading {
   position: relative;
-  margin-top: 100px;
+  margin-top: var(--main-margin);
   font-size: 40px;
   text-transform: uppercase;
 }
@@ -51,6 +50,33 @@
   height: 100%;
   backdrop-filter: brightness(40%);
 }
+.video::after,
+.status::after,
+.quate::after,
+.subscribe::after,
+footer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: brightness(30%);
+  z-index: -1;
+}
+.bullets {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px auto;
+}
+.bullets li {
+  cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid;
+}
+i:hover {
+  cursor: pointer;
+}
 /* End Components */
 /* Start global Rules */
 html {
@@ -58,8 +84,6 @@ html {
 }
 * {
   box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   padding: 0;
 }
 body {
@@ -67,6 +91,7 @@ body {
 }
 a {
   all: unset;
+  cursor: pointer;
 }
 li {
   list-style: none;
@@ -136,7 +161,6 @@ header ul li {
   position: relative;
   color: white;
   transition: var(--main-transition-duration);
-  cursor: pointer;
 }
 header ul li:hover,
 .active {
@@ -155,6 +179,9 @@ header ul li::after {
 header ul li:is(:hover,:has(.active))::after {
   background-color: var(--main-color);
 }
+header input#toggle-check {
+  all: unset;
+}
 .toggle-menu {
   color: white;
   font-size: 22px;
@@ -170,7 +197,7 @@ header ul li:is(:hover,:has(.active))::after {
   header ul {
     display: none;
   }
-  header .toggle-menu:hover + ul {
+  header input#toggle-check:checked + ul {
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -178,9 +205,11 @@ header ul li:is(:hover,:has(.active))::after {
     left: 0;
     width: 100%;
     background-color: rgb(0  0 0 / 50%);
+    backdrop-filter: blur(3px);
+    border-bottom: 5px solid white;
   }
   header ul li {
-    padding: 20px;
+    padding: 30px;
   }
   header ul li::after {
     bottom: 0;
@@ -193,7 +222,6 @@ header .form {
   display: inline-flex;
   align-items: center;
   color: white;
-  cursor: pointer;
 }
 header .form::before {
   content: "";
@@ -260,7 +288,6 @@ i.change-background {
   justify-content: center;
   align-items: center;
   transition: var(--main-transition-duration);
-  cursor: pointer;
 }
 i.change-background:hover {
   background-color: rgb(0 0 0 / 20%);
@@ -282,15 +309,11 @@ i.change-background:hover {
   left: 50%;
   transform: translateX(-50%);
   bottom: 10px;
-  display: flex;
-  justify-content: space-between;
 }
 .landing ul.bullets li {
   width: 20px;
   height: 20px;
-  border-radius: 50%;
-  border: 1px solid white;
-  cursor: pointer;
+  border-color: white;
   transition: var(--main-transition-duration);
 }
 .landing ul.bullets li.active {
@@ -301,13 +324,12 @@ i.change-background:hover {
   background-color: white;
 }
 /* End Landing */
-
 /* start Services */
 .Services .services-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 50px;
-  margin-bottom: 100px;
+  margin-bottom:  var(--main-margin);
 }
 @media (max-width: 1024px) {
   .Services .services-container .srv {
@@ -407,15 +429,14 @@ i.change-background:hover {
 .portfolio ul.filter li {
   padding: 10px;
   transition: var(--main-transition-duration);
+  cursor: pointer;
 }
 .portfolio ul.filter li.active {
   background-color: var(--main-color);
   color: white;
-  cursor: pointer;
 }
 .portfolio ul.filter li:not(.active):hover {
   background-color: #eee;
-  cursor: pointer;
 }
 .portfolio ul.images {
   display: grid;
@@ -472,7 +493,6 @@ i.change-background:hover {
   width: fit-content;
   padding: 15px 20px;
   margin: 30px auto;
-  transform: translateX(-50%);
   background-color: var(--main-color);
   color: white;
   text-transform: uppercase;
@@ -480,25 +500,19 @@ i.change-background:hover {
 }
 .portfolio .more:hover {
   filter: brightness(90%);
-  cursor: pointer;
 }
 /* End Portfolio */
 /* Start video */
 .video {
-  margin-top: 100px;
+  margin-top:  var(--main-margin);
   position: relative;
 }
 .video video {
   max-width: 100%;
 }
 .video::after {
-  content: '';
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  backdrop-filter: brightness(60%);
+  z-index: 0!important;
+  backdrop-filter: brightness(60%)!important;
 }
 .video .text {
   width: 100%;
@@ -518,13 +532,13 @@ i.change-background:hover {
   font-weight: lighter;
   font-size: 25px;
   margin: 0;
+  text-align: center;
   text-transform: uppercase;
 }
 .video .text a {
   padding: 10px 20px;
   background-color: black;
   text-transform: uppercase;
-  cursor: pointer;
 }
 /* End video */
 /* Start About  */
@@ -536,9 +550,28 @@ i.change-background:hover {
 }
 .about .image img {
   position: absolute;
+  max-width: 100%;
   left: 50%;
   transform: translateX(-50%);
   bottom: -120px;
+}
+@media (max-width: 767px) {
+  .about .image img {
+    bottom: -17vw;
+    transform: translateX(-52%);
+  }
+  .about .image {
+    height: 250px;
+  }
+}
+@media (max-width: 440px) {
+  .about .image img {
+    bottom: -20vw;
+    transform: translateX(-52%);
+  }
+  .about .image {
+    height: 150px;
+  }
 }
 /* End About  */
 /* Start Status */
@@ -548,16 +581,6 @@ i.change-background:hover {
   background-image: url("../images/status.png");
   background-size: cover;
   z-index: -2;
-}
-.status::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: brightness(30%);
-  z-index: -1;
 }
 .status .container {
   padding: 70px 20px;
@@ -598,8 +621,8 @@ i.change-background:hover {
 .our-skills .container {
   display: grid;
   grid-template-columns: repeat(2,1fr);
-  margin-top: 100px;
-  margin-bottom: 100px;
+  margin-top:  var(--main-margin);
+  margin-bottom:  var(--main-margin);
   gap: 70px;
 }
 @media (max-width: 1024px) {
@@ -651,15 +674,12 @@ i.change-background:hover {
 }
 .our-skills .Testimonials .bullets {
   width: 60px;
-  display: flex;
-  justify-content: space-between;
   margin: 30px auto;
 }
 .our-skills .Testimonials .bullets li {
   width: 15px;
   height: 15px;
-  border-radius: 50%;
-  border: 1px solid #a2a2a2;
+  border-color: #a2a2a2;
 }
 .our-skills .Testimonials .bullets li.active {
   background-color: var(--main-color);
@@ -720,23 +740,280 @@ i.change-background:hover {
   background-size: cover;
   color: white;
   z-index: -2;
-  padding: 100px;
+  padding:  var(--main-margin);
   text-align: center;
-  margin-bottom: 100px;
-}
-.quate::after {
-  content: '';
-  width: 100%;
-  height: 100%;
-  backdrop-filter: brightness(30%);
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
 }
 .quate q {
   display: block;
   margin-bottom: 20px;
-  font-size: 30px
+  font-size: 30px;
+  line-height: 1.5;
+}
+@media (max-width: 767px) {
+  .quate {
+    padding: 50px;
+  }
 }
 /* End Quate */
+/* Start Pricing */
+.pricing ul.plans {
+  width: 100%;
+  display: grid;
+  gap: 30px;
+}
+@media (min-width: 768px) {
+  .pricing ul.plans {
+    grid-template-columns: 1fr;
+  }
+}
+@media (min-width: 992px) {
+  .pricing ul.plans {
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+@media (min-width: 1200px) {
+  .pricing ul.plans {
+    grid-template-columns: repeat(4,1fr);
+  }
+}
+.pricing ul.plans li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+}
+.pricing ul.plans li div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-transform: capitalize;
+  border-top: 1px solid var(--main-color);
+}
+.pricing ul.plans li div:first-child {
+  padding: 40px 0;
+}
+.pricing ul.plans li div span.name {
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+.pricing ul.plans li div h5.price {
+  margin: 0;
+  position: relative;
+  text-align: center;
+  font-size: 60px;
+  font-weight: bold;
+}
+.pricing ul.plans li div h5::after,
+.pricing ul.plans li div h5::before {
+  position: absolute;
+  font-size: 20px;
+}
+.pricing ul.plans li div h5.price::before {
+  content: '$';
+  left: -30px;
+  font-weight: lighter;
+}
+.pricing ul.plans li div h5.price::after {
+  content: "/Mo";
+  bottom: 0;
+  right: -50px;
+}
+.pricing ul.plans li div ul.features li {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--main-color);
+}
+.pricing ul.plans li div ul.features li:last-child {
+  border: none;
+}
+.pricing .button {
+  padding: 20px;
+  border: 1px solid var(--main-color);
+  margin: 30px;
+  transition: var(--main-transition-duration);
+}
+.pricing .button:hover {
+  background-color: var(--main-color);
+  color: white;
+}
+.pricing .button:active {
+  filter: brightness(80%);
+}
+.pricing .container > span {
+  font-size: 20px;
+}
+.pricing .container > .button {
+  background-color: var(--main-color);
+  color: white;
+  padding: 15px 30px;
+}
+/* End Pricing */
+/* Start subscribe */
+.subscribe {
+  background-image: url("../images/earth.png");
+  background-size: cover;
+  margin-top:  var(--main-margin);
+  position: relative;
+}
+.subscribe::after {
+  backdrop-filter: brightness(50%)!important;
+  z-index: 0;
+}
+.subscribe * {
+  z-index: 1;
+}
+.subscribe .container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding-top:  var(--main-margin);
+  padding-bottom:  var(--main-margin);
+  color: white;
+}
+@media (max-width: 992px) {
+  .subscribe .container {
+  flex-wrap: wrap;
+  }
+  .subscribe p {
+    text-align: center;
+  }
+}
+.subscribe p {
+  margin: 0;
+  line-height: 2;
+}
+.subscribe form {
+  width: 500px;
+  height: 60px;
+  display: flex;
+  flex-wrap: nowrap;
+  position: relative;
+  border: 1px solid white;
+}
+.subscribe form i {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 22px;
+}
+.subscribe form input[type="email"] {
+  width: calc(100% - 123px);
+  height: 100%;
+  padding-left: 60px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: white;
+  caret-color: var(--main-color);
+}
+.subscribe form input[type="email"]::placeholder {
+  color: white;
+}
+.subscribe form input[type="submit"] {
+  all: unset;
+  height: 100%;
+  padding: 5px 20px;
+  box-sizing: border-box;
+  background-color: var(--main-color);
+  text-transform: uppercase;
+}
+/* End subscribe */
+/* Start connect-us */
+.connect-us .connect-us-container {
+  display: flex;
+  width: 100%;
+  gap: 50px;
+  text-transform: capitalize;
+  margin-top:  var(--main-margin);
+  margin-bottom:  var(--main-margin);
+}
+@media (max-width: 992px) {
+  .connect-us .connect-us-container {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .connect-us .connect-us-container > * {
+    width: 100%;
+    text-align: center;
+  }
+}
+.connect-us form {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 70%;
+  gap: 30px;
+}
+.connect-us form > * {
+  min-height: 60px;
+  padding: 20px;
+  outline: none;
+  border: 1px solid #ccc;
+}
+.connect-us form input[type="submit"] {
+  width: fit-content;
+  align-self: flex-end;
+  padding: 5px 20px;
+  border: none;
+  background-color: var(--main-color);
+  text-transform: uppercase;
+  color: white;
+  cursor: pointer;
+}
+.connect-us form input[type="submit"]:active {
+  filter: brightness(80%);
+}
+.connect-us form textarea {
+  height: 300px;
+  resize: vertical;
+}
+.connect-us .info div {
+  margin-bottom: 50px;
+}
+.connect-us .info span {
+  margin: 30px 0;
+  text-transform: uppercase;
+  font-size: 20px;
+}
+.connect-us .info ul li {
+  padding: 10px 0;
+  color: #797979;
+}
+.connect-us .info .address li {
+  font-style: italic;
+}
+/* Start connect-us */
+/* Start footer */
+footer {
+  padding: 50px 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-image: url(../images/earth.png);
+  background-size: cover;
+  position: relative;
+  z-index: 0;
+  color: white;
+}
+footer ul {
+  display: flex;
+  margin: 20px 0 50px;
+}
+footer ul li {
+  margin: 0 15px;
+}
+footer span {
+  border-bottom: 1px solid;
+  width: fit-content;
+  display: block;
+  margin-top: 40px;
+  padding: 20px;
+  text-transform: uppercase;
+  font-size: 22px;
+}
+footer strong {
+  color: var(--main-color);
+}
+/* End footer */
