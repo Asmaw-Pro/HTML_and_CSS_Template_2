@@ -20,7 +20,7 @@ Kasper is a responsive web page built using **HTML5** and **CSS3** to enhance my
 
 ## Links
 
--**[Preview the Project]**(https://asmaw-pro.github.io/HTML_and_CSS_Template_2/)
+## [Preview the Project](https://asmaw-pro.github.io/HTML_and_CSS_Template_2/)
 
 ## How to Run
 
